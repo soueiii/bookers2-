@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+   <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+     <div class="container">
+      <div class="navbar-brand">
+       <span><%= link_to " Bookers",root_path, class:'text-light' %></span>
+      </div>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+       </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+       <ul class="navbar-nav">
+       <% if user_signed_in? %>
+　　　  <li class="nav-item">
+          <%= link_to user_path(current_user), class:"btn btn-link text-light" do %>
+           <span class="fas fa-home"> Home</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to users_path, class:"btn btn-link text-light" do %>
+           <span class="fas fa-users"> Users</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to books_path, class:"btn btn-link text-light" do %>
+           <span class="fas fa-book-open"> Books</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to  destroy_user_session_path,method: :delete,class:"btn btn-link text-light" do %>
+           <span class="fas fa-sign-out-alt"> logout</span>
+          <% end %>
+        </li>
+       <% else %>
+         <li class="nav-item">
+          <%= link_to root_path, class:"btn btn-link text-light" do %>
+           <span class="fas fa-home"> Home</span>
+          <% end %>
+         </li>
+         <li class="nav-item">
+          <%= link_to home_about_path, class:"btn btn-link text-light" do %>
+           <span class="fas fa-link"> About</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_user_registration_path, class:"btn btn-link text-light" do %>
+           <span class="fas fa-user-plus"> sign up</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_user_session_path, class:"btn btn-link text-light" do %>
+           <span class="fas fa-sign-in-alt"> login</span>
+          <% end %>
+        </li>
+       <% end %>
+       </ul>
+      </div>
+     </div>
+    </nav>
+   </header>
+   <div class="fixed-bottom">
+
+       </div>
+      </div>
+     </div>
+    </div>
+   </footer>
+    <%= notice %>
+    
+
+  <%= yield %>
+ </body>
+</html>
