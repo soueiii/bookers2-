@@ -18,7 +18,7 @@ class UsersController < ApplicationController
  end
 
  def show
-  @book = Book.new
+  @booknew = Book.new
   @user = User.find(params[:id])
   # @book = Book.find(params[:id])
   @books = @user.books
@@ -33,6 +33,7 @@ class UsersController < ApplicationController
  end
 
  def edit
+  @profile_image = User.new
   @user = User.find(params[:id])
   if @user == current_user
   render "edit"
@@ -42,6 +43,7 @@ class UsersController < ApplicationController
  end
 
  def update
+  @profile_image = User.new
   @user = User.find(params[:id])
   if @user.update(user_params)
    redirect_to user_path(current_user), notice: 'successfully'
@@ -65,6 +67,6 @@ class UsersController < ApplicationController
  private
 
  def user_params
-  params.require(:user).permit(:name, :introduction, :profile_image_id)
+  params.require(:user).permit(:name, :introduction, :profile_image)
  end
 end
